@@ -31,10 +31,10 @@ namespace superKnights.Repositories
     {
       string sql = @"
       SELECT 
-      k.*,
-      kq.*
+      kq.*,
+      k.*
       FROM knight_quest kq
-      JOIN knights k ON k.id = kq.knightId
+      JOIN knights k ON kq.knightId = k.id
       WHERE kq.questId = @questId;";
       return _db.Query<KnightQuest, Knight, KnightQuest>(sql, (kq, k) =>
       {
